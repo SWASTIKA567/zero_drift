@@ -49,47 +49,51 @@ class ZeroDriftLogo extends StatelessWidget {
       children: [
         iconWidget,
         const SizedBox(width: 12),
-        Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  'ZERO',
-                  style: TextStyle(
-                    fontSize: size * 0.42,
-                    fontWeight: FontWeight.w900,
-                    letterSpacing: 1.2,
-                    color: AppColors.textPrimary,
+        Flexible(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    'ZERO',
+                    style: TextStyle(
+                      fontSize: size * 0.40,
+                      fontWeight: FontWeight.w900,
+                      letterSpacing: 1.2,
+                      color: AppColors.textPrimary,
+                    ),
                   ),
-                ),
-                const SizedBox(width: 4),
+                  const SizedBox(width: 4),
+                  Text(
+                    'DRIFT',
+                    style: TextStyle(
+                      fontSize: size * 0.40,
+                      fontWeight: FontWeight.w900,
+                      letterSpacing: 1.2,
+                      color: AppColors.primary,
+                    ),
+                  ),
+                ],
+              ),
+              if (showSubtitle) ...[
+                const SizedBox(height: 2),
                 Text(
-                  'DRIFT',
+                  'Intelligent Dead Reckoning System',
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
                   style: TextStyle(
-                    fontSize: size * 0.42,
-                    fontWeight: FontWeight.w900,
-                    letterSpacing: 1.2,
-                    color: AppColors.primary,
+                    fontSize: (size * 0.20).clamp(9.0, 12.0),
+                    fontWeight: FontWeight.w500,
+                    letterSpacing: 0.1,
+                    color: AppColors.textSecondary,
                   ),
                 ),
               ],
-            ),
-            if (showSubtitle) ...[
-              const SizedBox(height: 2),
-              Text(
-                'Intelligent Dead Reckoning System',
-                style: TextStyle(
-                  fontSize: (size * 0.22).clamp(10.0, 13.0),
-                  fontWeight: FontWeight.w500,
-                  letterSpacing: 0.1,
-                  color: AppColors.textSecondary,
-                ),
-              ),
             ],
-          ],
+          ),
         ),
       ],
     );

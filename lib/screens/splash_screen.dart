@@ -24,6 +24,8 @@ class _SplashScreenState extends State<SplashScreen>
   late Animation<double> _scaleAnimation;
   late Animation<double> _opacityAnimation;
 
+  Timer? _timer;
+
   @override
   void initState() {
     super.initState();
@@ -45,13 +47,12 @@ class _SplashScreenState extends State<SplashScreen>
 
     _controller.forward();
 
-    _checkAuthAndNavigate();
+    _timer = Timer(const Duration(milliseconds: 2200), () {
+      _checkAuthAndNavigate();
+    });
   }
 
-  Future<void> _checkAuthAndNavigate() async {
-    // Wait for the splash animation to finish nicely
-    await Future.delayed(const Duration(milliseconds: 2200));
-
+  void _checkAuthAndNavigate() {
     if (!mounted) return;
 
     final isLoggedIn = widget.storageService.isLoggedIn();
@@ -75,6 +76,7 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   void dispose() {
+    _timer?.cancel();
     _controller.dispose();
     super.dispose();
   }
